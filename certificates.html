@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Certificates | NITIN.SYS</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #050b18;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #0066ff;
+    filter: blur(180px);
+    opacity: 0.18;
+    top: -180px;
+    left: -150px;
+    z-index: -1;
+}
+
+header {
+    padding: 25px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #18345b;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+    color: #00d5ff;
+    letter-spacing: 2px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid #00bfff;
+    border-radius: 25px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #00bfff;
+    color: black;
+    box-shadow: 0 0 20px #00bfff;
+}
+
+.hero {
+    text-align: center;
+    padding: 75px 20px 45px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: #00d5ff;
+    text-shadow: 0 0 20px #00bfff;
+}
+
+.hero p {
+    color: #a8b8d4;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.certificates {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 25px 80px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+}
+
+.card {
+    background: rgba(12, 27, 52, 0.85);
+    border: 1px solid #164d7c;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.35s;
+    box-shadow: 0 5px 25px rgba(0, 120, 255, 0.08);
+}
+
+.card:hover {
+    transform: translateY(-9px);
+    border-color: #00d5ff;
+    box-shadow: 0 0 25px rgba(0, 190, 255, 0.3);
+}
+
+.image-box {
+    height: 220px;
+    background: #071326;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+    transition: 0.3s;
+}
+
+.image-box img:hover {
+    transform: scale(1.04);
+}
+
+.card h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #00d5ff;
+}
+
+.card p {
+    color: #a8b8d4;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 11px 23px;
+    border-radius: 25px;
+    background: linear-gradient(90deg, #007bff, #00d5ff);
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px #00bfff;
+    transform: scale(1.05);
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #8295b5;
+    border-top: 1px solid #18345b;
+    font-size: 13px;
+}
+
+/* IMAGE PREVIEW */
+.preview {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.94);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.preview img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 2px solid #00d5ff;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #007bff;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+}
+
+@media(max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 17px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 55px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">NITIN.SYS</div>
+
+    <nav>
+        <a href="index.html">← Back to Home</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>MY <span>CERTIFICATIONS</span></h1>
+    <p>
+        My Learning Journey | Skills | Achievements<br>
+        Every Certificate Represents a Step Forward 🚀
+    </p>
+</section>
+
+<section class="certificates">
+
+    <!-- CERTIFICATE 1 -->
+    <div class="card">
+        <div class="image-box">
+            <img src="string.jpeg"
+                 alt="String Certificate"
+                 onclick="openPreview(this.src)">
+        </div>
+
+        <h2>String Certificate</h2>
+        <p>Learning Achievement</p>
+
+        <a href="string.jpeg" target="_blank" class="btn">
+            View Certificate
+        </a>
+    </div>
+
+    <!-- CERTIFICATE 2 -->
+    <div class="card">
+        <div class="image-box">
+            <img src="java.jpeg"
+                 alt="Java Certificate"
+                 onclick="openPreview(this.src)">
+        </div>
+
+        <h2>Java Certificate</h2>
+        <p>Programming Achievement</p>
+
+        <a href="java.jpeg" target="_blank" class="btn">
+            View Certificate
+        </a>
+    </div>
+
+</section>
+
+<footer>
+    © 2026 NITIN.SYS | Designed with ❤️ by Nitin Singh
+</footer>
+
+<!-- IMAGE PREVIEW -->
+<div class="preview" id="preview" onclick="closePreview()">
+    <span class="close">&times;</span>
+    <img id="previewImage" src="" alt="Certificate Preview">
+</div>
+
+<script>
+function openPreview(image) {
+    document.getElementById("previewImage").src = image;
+    document.getElementById("preview").style.display = "flex";
+}
+
+function closePreview() {
+    document.getElementById("preview").style.display = "none";
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+        closePreview();
+    }
+});
+</script>
+
+</body>
+</html>
