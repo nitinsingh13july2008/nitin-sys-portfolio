@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,41 +36,198 @@ button{font:inherit;cursor:pointer}
 .green{color:var(--green)}
 .muted{color:var(--muted)}
 
-/* INTRO */
+/* PHOTO INTRO: PHOTO → EYE ZOOM → PORTFOLIO */
 #intro{
-  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
-  overflow:hidden;background:#010402;transition:opacity .9s ease,visibility .9s ease;
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  background:#010402;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .9s ease,visibility .9s ease;
 }
-#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+#intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
 .intro-bg{
-  position:absolute;inset:0;
-  background:linear-gradient(rgba(0,8,3,.58),rgba(0,5,2,.94)),url("hacker-background.png") center/cover no-repeat;
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(0,8,3,.58),rgba(0,5,2,.94)),
+    url("hacker-background.png") center/cover no-repeat;
   animation:zoomBackground 12s ease-in-out infinite alternate;
 }
 .intro-bg::after{
-  content:"";position:absolute;inset:0;
+  content:"";
+  position:absolute;
+  inset:0;
   background:radial-gradient(circle,transparent 0,rgba(0,0,0,.85) 90%);
 }
-.intro-content{position:relative;z-index:2;width:min(800px,90%);text-align:center;padding:25px}
-.terminal-label{color:var(--green);letter-spacing:5px;font-size:12px;margin-bottom:25px;animation:blink 1.2s infinite}
-.glitch{
-  color:var(--green);font-size:clamp(38px,9vw,90px);font-weight:900;letter-spacing:-3px;
-  text-shadow:0 0 18px rgba(0,255,136,.45);animation:glitch 3s infinite;
+.intro-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
 }
-.intro-subtitle{color:#d3ffe3;font-size:clamp(12px,2vw,16px);letter-spacing:3px;margin-top:18px}
-.intro-line{width:min(420px,90%);height:3px;margin:28px auto;background:#123323;overflow:hidden}
-.intro-line span{display:block;height:100%;width:40%;background:var(--green);box-shadow:0 0 15px var(--green);animation:loading 2s infinite}
-.intro-buttons{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin-top:30px}
-.btn{
-  display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:48px;
-  padding:13px 23px;border:1px solid var(--green);color:var(--green);
-  background:rgba(0,255,136,.06);transition:.3s;font-weight:bold;font-size:12px;letter-spacing:1px;
+.intro-photo-wrap{
+  position:relative;
+  width:min(340px,76vw);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  animation:introAppear 1.5s ease both;
 }
-.btn:hover{color:#00180b;background:var(--green);box-shadow:0 0 28px rgba(0,255,136,.35);transform:translateY(-3px)}
-.btn.primary{color:#00180b;background:var(--green)}
-.btn.primary:hover{background:var(--lime);border-color:var(--lime)}
-.intro-status{margin-top:35px;color:#70a98a;font-size:11px;line-height:2}
-.cursor{display:inline-block;width:8px;height:14px;background:var(--green);animation:blink .7s infinite}
+.intro-photo-ring{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  border:2px solid var(--green);
+  box-shadow:0 0 25px var(--green),0 0 70px rgba(0,255,136,.25);
+  animation:introRing 5s linear infinite;
+}
+.intro-photo-ring::before,
+.intro-photo-ring::after{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px dashed rgba(0,255,136,.6);
+  border-radius:50%;
+}
+.intro-photo-ring::after{
+  inset:25px;
+  border-style:solid;
+  border-color:rgba(180,255,57,.25);
+}
+.intro-photo{
+  position:relative;
+  width:88%;
+  height:88%;
+  border-radius:50%;
+  overflow:hidden;
+  border:4px solid #031108;
+  box-shadow:0 0 35px rgba(0,255,136,.35);
+  background:#020805;
+}
+.intro-photo img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center 38%;
+  transform:scale(1);
+  transform-origin:50% 38%;
+  filter:contrast(1.1) saturate(1.12);
+}
+.intro-scan{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:50%;
+  background:linear-gradient(
+    to bottom,
+    transparent 42%,
+    rgba(0,255,136,.55) 50%,
+    transparent 58%
+  );
+  animation:faceScan 2.5s linear infinite;
+}
+.intro-name{
+  color:var(--green);
+  font-size:clamp(34px,8vw,68px);
+  font-weight:900;
+  letter-spacing:4px;
+  margin-top:30px;
+  text-shadow:0 0 22px rgba(0,255,136,.55);
+  animation:introTextIn 1.8s ease both;
+}
+.intro-subtitle{
+  color:#d3ffe3;
+  font-size:clamp(10px,2vw,14px);
+  letter-spacing:3px;
+  margin-top:12px;
+  animation:introTextIn 2s ease both;
+}
+.intro-status{
+  margin-top:25px;
+  color:#70c995;
+  font-size:11px;
+  letter-spacing:2px;
+  line-height:2;
+  animation:blink 1.2s infinite;
+}
+.intro-loading{
+  width:min(300px,75vw);
+  height:3px;
+  margin-top:22px;
+  background:#123323;
+  overflow:hidden;
+}
+.intro-loading span{
+  display:block;
+  height:100%;
+  width:35%;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+  animation:loading 2s infinite;
+}
+
+/* EYE ZOOM SEQUENCE */
+#intro.zooming .intro-photo-wrap{
+  animation:eyeZoom 2.7s cubic-bezier(.7,0,.2,1) forwards;
+}
+#intro.zooming .intro-photo img{
+  animation:eyeImageZoom 2.7s cubic-bezier(.7,0,.2,1) forwards;
+}
+#intro.zooming .intro-photo-ring,
+#intro.zooming .intro-scan{
+  opacity:0;
+  transition:opacity .3s;
+}
+#intro.zooming .intro-name,
+#intro.zooming .intro-subtitle,
+#intro.zooming .intro-status,
+#intro.zooming .intro-loading{
+  opacity:0;
+  transition:opacity .4s ease;
+}
+@keyframes introAppear{
+  from{opacity:0;transform:scale(.55)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes introTextIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes introRing{
+  to{transform:rotate(360deg)}
+}
+@keyframes faceScan{
+  from{transform:translateY(-100%)}
+  to{transform:translateY(100%)}
+}
+@keyframes eyeZoom{
+  0%{transform:scale(1);opacity:1}
+  30%{transform:scale(1.8);opacity:1}
+  65%{transform:scale(5);opacity:1}
+  100%{transform:scale(13);opacity:0}
+}
+@keyframes eyeImageZoom{
+  0%{transform:scale(1);transform-origin:50% 38%}
+  35%{transform:scale(2.1);transform-origin:50% 38%}
+  70%{transform:scale(5);transform-origin:50% 38%}
+  100%{transform:scale(9);transform-origin:50% 38%}
+}
 
 /* HEADER */
 header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);background:rgba(2,6,4,.91);backdrop-filter:blur(16px)}
@@ -124,8 +280,6 @@ header{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border);b
   content:"";position:absolute;inset:-7px;border:1px solid rgba(0,255,136,.13);
   border-radius:29px;pointer-events:none;
 }
-
-/* YOUR HACKER PHOTO */
 .profile-avatar{
   position:relative;width:178px;height:178px;margin:0 auto 20px;border-radius:50%;
   padding:7px;background:conic-gradient(var(--green),transparent 18%,var(--lime) 38%,var(--green) 58%,transparent 78%,var(--green));
@@ -308,7 +462,6 @@ footer strong{color:var(--green)}
 @keyframes blink{50%{opacity:.35}}
 @keyframes loading{0%{transform:translateX(-150%)}100%{transform:translateX(350%)}}
 @keyframes zoomBackground{from{transform:scale(1)}to{transform:scale(1.12)}}
-@keyframes glitch{0%,90%,100%{transform:translate(0)}92%{transform:translate(-2px,1px)}94%{transform:translate(2px,-1px)}96%{transform:translate(-1px,0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 @keyframes avatarSpin{to{transform:rotate(360deg)}}
 @keyframes orbitSpin{to{transform:rotate(360deg)}}
@@ -353,8 +506,8 @@ footer strong{color:var(--green)}
   .education-image{height:270px}
   .card{padding:23px}
   .intro-subtitle{letter-spacing:1px}
-  .terminal-label{letter-spacing:2px}
-  .glitch{letter-spacing:-2px}
+  .intro-name{letter-spacing:2px}
+  .intro-status{font-size:9px}
 }
 @media(max-width:380px){
   .profile-mini{padding:10px 11px}
@@ -376,22 +529,29 @@ footer strong{color:var(--green)}
 
 <canvas id="matrix" aria-hidden="true"></canvas>
 
-<!-- INTRO SCREEN -->
+<!-- PHOTO INTRO SCREEN -->
 <div id="intro">
   <div class="intro-bg"></div>
+
   <div class="intro-content">
-    <div class="terminal-label">INITIALIZING SECURE CONNECTION...</div>
-    <h1 class="glitch">NITIN.SYS</h1>
-    <p class="intro-subtitle">DEVELOPER PORTFOLIO // SYSTEM ONLINE</p>
-    <div class="intro-line"><span></span></div>
-    <div class="intro-buttons">
-      <button class="btn primary" id="enterBtn" type="button">&gt; ENTER SYSTEM</button>
-      <button class="btn" id="soundBtn" type="button">SOUND: OFF</button>
+    <div class="intro-photo-wrap">
+      <div class="intro-photo-ring"></div>
+
+      <div class="intro-photo">
+        <img src="hacker.jpeg" alt="Nitin Singh">
+        <div class="intro-scan"></div>
+      </div>
     </div>
+
+    <h1 class="intro-name">NITIN.SYS</h1>
+    <p class="intro-subtitle">DEVELOPER PORTFOLIO // SYSTEM ONLINE</p>
+
+    <div class="intro-loading"><span></span></div>
+
     <div class="intro-status">
-      [ OK ] MATRIX CONNECTION ESTABLISHED<br>
+      [ OK ] IDENTITY DETECTED<br>
       [ OK ] DEVELOPER PROFILE LOADED<br>
-      [ WAITING ] USER AUTHENTICATION <span class="cursor"></span>
+      [ INITIALIZING SYSTEM... ]
     </div>
   </div>
 </div>
@@ -438,7 +598,6 @@ footer strong{color:var(--green)}
     </div>
   </div>
 
-  <!-- PROFILE CIRCLE: hacker.jpeg -->
   <div class="profile-dashboard">
     <div class="profile-orbit"><span class="orbit-dot"></span></div>
 
@@ -471,7 +630,7 @@ footer strong{color:var(--green)}
   </div>
 </section>
 
-<!-- VIDEO FEED: ORIGINAL VIDEO PRESERVED -->
+<!-- VIDEO FEED -->
 <section class="video-section container">
   <div class="video-panel reveal">
     <div class="video-info">
@@ -863,40 +1022,32 @@ function playBeep(frequency=500,duration=.07){
   }catch(error){console.log("Audio is not available.");}
 }
 
-/* INTRO */
+/* AUTOMATIC INTRO: PHOTO → EYE ZOOM → PORTFOLIO */
 const intro=document.getElementById("intro");
-const enterBtn=document.getElementById("enterBtn");
-const soundBtn=document.getElementById("soundBtn");
 const video=document.getElementById("hackerVideo");
 const videoStatus=document.getElementById("videoStatus");
 
-soundBtn.addEventListener("click",()=>{
-  soundEnabled=!soundEnabled;
-  soundBtn.textContent=soundEnabled?"SOUND: ON":"SOUND: OFF";
-  if(soundEnabled){
-    try{
-      audioContext||=new(window.AudioContext||window.webkitAudioContext)();
-      audioContext.resume();
-    }catch(error){}
-    playBeep(750,.1);
-  }
-  if(video)video.muted=!soundEnabled;
-});
+document.body.style.overflow="hidden";
 
-enterBtn.addEventListener("click",async()=>{
-  playBeep(650,.15);
-  intro.classList.add("hide");
-  document.body.style.overflow="auto";
-  if(video){
-    try{
-      video.muted=!soundEnabled;
-      await video.play();
-      videoStatus.textContent="PLAYING";
-    }catch(error){
-      videoStatus.textContent="PRESS PLAY";
-    }
-  }
-});
+function startIntroSequence(){
+  // Photo ko pehle clearly dikhne do.
+  setTimeout(()=>{
+    intro.classList.add("zooming");
+
+    // Eye zoom animation ke baad portfolio reveal hoga.
+    setTimeout(()=>{
+      intro.classList.add("hide");
+      document.body.style.overflow="auto";
+    },2700);
+
+  },2500);
+}
+
+if(document.readyState==="complete"){
+  startIntroSequence();
+}else{
+  window.addEventListener("load",startIntroSequence,{once:true});
+}
 
 /* VIDEO STATUS */
 if(video){
